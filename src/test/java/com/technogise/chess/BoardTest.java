@@ -20,9 +20,9 @@ class BoardTest {
 
     @Test
     void shouldSetPieceAtTheRightPositionAsIntended() throws InvalidPositionException {
-        Piece pawn = new Pawn("C3");
-        board.setPiece(pawn);
+        Piece pawn = new Pawn();
+        board.setPiece(pawn, "C3");
         Cell cell = board.getCells()[5][2];
-        assertEquals(pawn.getPosition(), cell.getPosition());
+        assertEquals(pawn.getBoard().getPiecePosition(pawn), cell.getPosition());
     }
 }

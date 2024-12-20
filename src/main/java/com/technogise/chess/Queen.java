@@ -8,24 +8,21 @@ import java.util.stream.Stream;
 import static com.technogise.chess.Direction.*;
 
 public class Queen extends Piece {
-    public Queen(String position) throws InvalidPositionException {
-        super(position);
-    }
 
     @Override
     public Set<String> getPossibleMovements() {
-        String currentPosition = getPosition();
+        String currentPosition = getBoard().getPiecePosition(this);
         return Stream.of(
-                        getMovementsFor(currentPosition, FORWARD, 7),
-                        getMovementsFor(currentPosition, FORWARD_RIGHT_DIAGONAL, 7),
-                        getMovementsFor(currentPosition, RIGHT, 7),
-                        getMovementsFor(currentPosition, BACKWARD_RIGHT_DIAGONAL, 7),
-                        getMovementsFor(currentPosition, BACKWARD, 7),
-                        getMovementsFor(currentPosition, BACKWARD_LEFT_DIAGONAL, 7),
-                        getMovementsFor(currentPosition, LEFT, 7),
-                        getMovementsFor(currentPosition, FORWARD_LEFT_DIAGONAL, 7)
-                )
-                .flatMap(Collection::stream)
-                .collect(Collectors.toSet());
+            getMovementsFor(currentPosition, FORWARD, 7),
+            getMovementsFor(currentPosition, FORWARD_RIGHT_DIAGONAL, 7),
+            getMovementsFor(currentPosition, RIGHT, 7),
+            getMovementsFor(currentPosition, BACKWARD_RIGHT_DIAGONAL, 7),
+            getMovementsFor(currentPosition, BACKWARD, 7),
+            getMovementsFor(currentPosition, BACKWARD_LEFT_DIAGONAL, 7),
+            getMovementsFor(currentPosition, LEFT, 7),
+            getMovementsFor(currentPosition, FORWARD_LEFT_DIAGONAL, 7)
+        )
+        .flatMap(Collection::stream)
+        .collect(Collectors.toSet());
     }
 }

@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PawnTest {
 
+    private final Board board = new Board();
+
     private Pawn pawn;
     private Set<String> possibleMovements;
 
@@ -42,7 +44,8 @@ class PawnTest {
     }
 
     private PawnTest pawnAt(String position) throws InvalidPositionException {
-        pawn = new Pawn(position);
+        pawn = new Pawn();
+        board.setPiece(pawn, position);
         return this;
     }
 

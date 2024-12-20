@@ -18,10 +18,15 @@ public class Board {
         }
     }
 
-    public void setPiece(Piece piece) throws InvalidPositionException {
-        String position = piece.getPosition();
+    public void setPiece(Piece piece, String position) throws InvalidPositionException {
+        if(!isValidPosition(position)) throw new InvalidPositionException();
         Cell cell = getCellFor(position);
         cell.setPiece(piece);
+        piece.setBoard(this);
+    }
+
+    private boolean isValidPosition(String position) {
+        return position != null && position.matches("[A-H][1-8]");
     }
 
     private Cell getCellFor(String position) throws InvalidPositionException {
@@ -38,4 +43,16 @@ public class Board {
     public Cell[][] getCells() {
         return cells;
     }
+
+    public String getPiecePosition(Piece piece) {
+        for (Cell[] row : cells) {
+            for (Cell cell : row) {
+                if (cell.getPiece() == piece) {
+                    return cell.getPosition();
+                }
+            }
+        }
+        return null;
+    }
+
 }

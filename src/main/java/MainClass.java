@@ -15,22 +15,22 @@ public class MainClass {
             System.out.print("\nInput - ");
             input = scanner.nextLine();
             if(input.equals("exit")) break;
-            Piece piece = getPiece(input);
-            board.setPiece(piece);
+            String[] pieceAndPosition = input.replaceAll("\\s", "").split(",");
+            String pieceName = pieceAndPosition[0];
+            String piecePosition = pieceAndPosition[1];
+            Piece piece = getPiece(pieceName);
+            board.setPiece(piece, piecePosition);
             List<String> possibleMovements = piece.getPossibleMovements().stream().sorted().collect(Collectors.toList());
             String movementsString = String.join(", ", possibleMovements);
             System.out.println(movementsString);
         }
     }
 
-    private static Piece getPiece(String input) throws InvalidPositionException {
-        String[] pieceAndPosition = input.replaceAll("\\s", "").split(",");
-        String pieceName = pieceAndPosition[0];
-        String piecePosition = pieceAndPosition[1];
+    private static Piece getPiece(String pieceName) {
         return switch (pieceName) {
-            case "Pawn"  -> new Pawn(piecePosition);
-            case "Queen" -> new Queen(piecePosition);
-            case "King"  -> new King(piecePosition);
+            case "Pawn"  -> new Pawn();
+            case "Queen" -> new Queen();
+            case "King"  -> new King();
             default -> throw new IllegalArgumentException("Invalid piece entered: " + pieceName);
         };
     }

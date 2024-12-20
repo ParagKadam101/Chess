@@ -76,8 +76,8 @@ class KingTest {
     }
 
     private KingTest kingAt(String position) throws InvalidPositionException {
-        king = new King(position);
-        board.setPiece(king);
+        king = new King();
+        board.setPiece(king, position);
         return this;
     }
 

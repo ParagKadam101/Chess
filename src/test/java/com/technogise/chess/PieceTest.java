@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PieceTest {
 
+    private final Board board = new Board();
     private boolean isPositionValid = true;
     private Piece piece;
 
@@ -30,7 +31,7 @@ class PieceTest {
     }
 
     private void verifyPiecePositionIsSameAsWasSet(String position) {
-        assertEquals(position, piece.getPosition());
+        assertEquals(position, piece.getBoard().getPiecePosition(piece));
     }
 
     private void verifyPiecePositionIsValid(boolean isPositionValid) {
@@ -43,7 +44,8 @@ class PieceTest {
 
     private PieceTest constructPiece(String position) {
         try {
-            piece = new Pawn(position);
+            piece = new Pawn();
+            board.setPiece(piece, position);
         } catch (InvalidPositionException e) {
             isPositionValid = false;
         }

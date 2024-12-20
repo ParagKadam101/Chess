@@ -1,6 +1,5 @@
 package com.technogise.chess;
 
-import com.technogise.chess.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,12 +13,5 @@ class CellTest {
     @Test
     void cellShouldHaveValidPosition() {
         assertEquals("F6", cell.getPosition());
-    }
-
-    @Test
-    void cellShouldHavePieceWithSamePosition() throws InvalidPositionException {
-        Piece piece = new Pawn("F6");
-        cell.setPiece(piece);
-        assertEquals(cell.getPiece().getPosition(), cell.getPosition());
     }
 }

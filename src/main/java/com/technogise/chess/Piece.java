@@ -5,24 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public abstract class Piece {
-    private final String position;
-
-    public Piece(String position) throws InvalidPositionException {
-        if(!isValidPosition(position)) {
-            throw new InvalidPositionException();
-        }
-        this.position = position;
-    }
-
-    private boolean isValidPosition(String position) {
-        return position != null && position.matches("[A-H][1-8]");
-    }
 
     public abstract Set<String> getPossibleMovements();
-
-    public String getPosition() {
-        return position;
-    }
+    private Board board;
 
     public static Set<String> getMovementsFor(String currentPosition, Direction direction, int steps) {
         int row = Integer.parseInt(currentPosition.substring(1, 2));
@@ -68,6 +53,14 @@ public abstract class Piece {
             return null;
         }
         return String.valueOf(newChar);
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public Board getBoard() {
+        return board;
     }
 }
 
